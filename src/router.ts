@@ -27,7 +27,7 @@ const router = createRouter({
   routes,
 })
 
-// Navigation guard pour protéger les routes en fonction de l'authentification
+// Protection des routes en fonction de l'authentification
 router.beforeEach((to) => {
   const auth = useAuthStore()
   if (to.meta.requiresAuth && !auth.isAuthenticated) {

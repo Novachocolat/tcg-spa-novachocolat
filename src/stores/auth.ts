@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!token.value)
 
   // Connexion et stockage des données
-  function login(data: AuthResponse) {
+  const login = (data: AuthResponse) => {
     token.value = data.token
     user.value = data.user
     // Persistance
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   // Déconnexion et nettoyage des données
-  function logout() {
+  const logout = () => {
     token.value = null
     user.value = null
     // Nettoyage

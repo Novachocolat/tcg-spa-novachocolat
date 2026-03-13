@@ -9,6 +9,7 @@
         <NInput
           v-model:value="password"
           type="password"
+          show-password-on="click"
           placeholder="Password"
         />
       </NFormItem>
