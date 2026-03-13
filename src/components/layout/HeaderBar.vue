@@ -26,13 +26,39 @@
         </NButton>
       </NSpace>
       <NSpace align="center" :size="16">
-        <NText depth="3">Renseigner le user connecté ici</NText>
-        <NButton size="small">Déconnexion</NButton>
+        <!-- Affichage du nom d'utilisateur si connecté -->
+        <NText depth="3">{{ auth.user?.username }}</NText>
+        <NButton v-if="auth.isAuthenticated" size="small" @click="handleLogout"
+          >Déconnexion</NButton
+        >
+        <NButton v-else size="small" @click="handleLogin">Connexion</NButton>
       </NSpace>
     </NSpace>
   </NLayoutHeader>
 </template>
 
 <script setup lang="ts">
+// Importations
+import { useRouter } from 'vue-router'
+
+import { ROUTES } from '../../router'
+import { useAuthStore } from '../../stores/auth'
+
+// Initialisation stores et router
+const auth = useAuthStore()
+const router = useRouter()
+
+// Gestion de la déconnexion
+const handleLogout = () => {
+  auth.logout()
+  router.push(ROUTES.LOG)
+}
+
+// Gestion de la connexion
+const handleLogin = () => {
+  router.push(ROUTES.LOG)
+}
+
+// Base URL de l'API
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL as string
 </script>
