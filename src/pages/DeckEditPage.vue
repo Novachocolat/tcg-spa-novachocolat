@@ -1,4 +1,5 @@
 <template>
+  <!-- Page d'édition d'un deck -->
   <div class="deck-edit">
     <div v-if="loadingDeck" class="deck-edit__loading">
       <NSpin />

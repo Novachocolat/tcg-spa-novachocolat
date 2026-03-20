@@ -1,5 +1,5 @@
 <template>
-  <div class="card-grid">
+  <NSpace :size="12" wrap>
     <CardItem
       v-for="card in cards"
       :key="card.id"
@@ -9,7 +9,7 @@
       :disabled="selectable && maxReached && !selectedIds.has(card.id)"
       @click="selectable && toggle(card.id)"
     />
-  </div>
+  </NSpace>
 </template>
 
 <script setup lang="ts">
@@ -60,11 +60,3 @@ function toggle(cardId: number) {
   emit('update:modelValue', [...next])
 }
 </script>
-
-<style scoped>
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-</style>
