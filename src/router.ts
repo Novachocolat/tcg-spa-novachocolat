@@ -2,6 +2,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Importations
+import DeckCreatePage from './pages/DeckCreatePage.vue'
+import DeckDetailPage from './pages/DeckDetailPage.vue'
+import DeckEditPage from './pages/DeckEditPage.vue'
 import HomePage from './pages/HomePage.vue'
 import LogPage from './pages/LogPage.vue'
 import SignUpPage from './pages/SignUpPage.vue'
@@ -12,6 +15,9 @@ export const ROUTES = {
   HOME: '/',
   LOG: '/log',
   SIGN_UP: '/sign-up',
+  DECK_CREATE: '/decks/create',
+  DECK_DETAIL: (id: string | number) => `/decks/${id}`,
+  DECK_EDIT: (id: string | number) => `/decks/${id}/edit`,
 } as const
 
 // Définition des routes de l'application
@@ -19,6 +25,21 @@ const routes = [
   { path: ROUTES.HOME, component: HomePage, meta: { requiresAuth: true } },
   { path: ROUTES.LOG, component: LogPage, meta: { isGuest: true } },
   { path: ROUTES.SIGN_UP, component: SignUpPage, meta: { isGuest: true } },
+  {
+    path: ROUTES.DECK_CREATE,
+    component: DeckCreatePage,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/decks/:id',
+    component: DeckDetailPage,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/decks/:id/edit',
+    component: DeckEditPage,
+    meta: { requiresAuth: true },
+  },
 ]
 
 // Création du routeur
